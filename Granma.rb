@@ -51,8 +51,7 @@ module Granma
 		end
 
 		def self.call(phrase,*args)
-			a = to_l(phrase)
-			a.call(*args)
+			to_l(phrase).call(*args)
 		end
 	end
 
