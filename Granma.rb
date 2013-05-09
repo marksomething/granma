@@ -33,6 +33,23 @@ module Granma
 
 		end
 
+		def self.to_other(type,phrase)
+
+			match = self.const_get("GRAMMAR").select(){|elem| elem[:phrases].include?(phrase.downcase)}
+			
+			if match.length > 1
+				# perhaps move to test suite
+				raise "more than one matching phrase"
+			elsif match.length == 0
+				raise "no matching phrase"
+			elsif not match[0].include?(type)
+				raise "no #{type} defined for phrase: #{phrase}"
+			end
+
+			match[0][type]
+
+		end
+
 		def self.call(phrase,*args)
 			a = to_l(phrase)
 			a.call(*args)
@@ -43,7 +60,8 @@ module Granma
 		GRAMMAR = [
 			{	
 				:phrases => ["at least","greater than or equal to"],
-				:lambda => lambda {|left,right| left >= right }
+				:lambda => lambda {|left,right| left >= right },
+				:sql => " >= "
 			},
 			{
 				:phrases => ["at most","less than or equal to"],
