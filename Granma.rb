@@ -33,14 +33,14 @@ module Granma
 
 		end
 
-		def self.to_l(phrase)
+		def self.to_lambda(phrase)
 
 			to_x(:lambda,phrase)
 
 		end
-		
+
 		def self.call(phrase,*args)
-			to_l(phrase).call(*args)
+			to_lambda(phrase).call(*args)
 		end
 	end
 
