@@ -33,7 +33,7 @@ module Granma
 
 		end
 
-		def self.to_other(type,phrase)
+		def self.to_x(type,phrase)
 
 			match = self.const_get("GRAMMAR").select(){|elem| elem[:phrases].include?(phrase.downcase)}
 			
