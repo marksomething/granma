@@ -16,23 +16,6 @@ module Granma
 			'(' + phrases.join('|') + ')'
 		end
 
-		def self.to_l(phrase)
-
-			match = self.const_get("GRAMMAR").select(){|elem| elem[:phrases].include?(phrase.downcase)}
-			
-			if match.length > 1
-				# perhaps move to test suite
-				raise "more than one matching phrase"
-			elsif match.length == 0
-				raise "no matching phrase"
-			elsif not match[0].include?(:lambda)
-				raise "no lambda defined for phrase: #{phrase}"
-			end
-
-			match[0][:lambda]
-
-		end
-
 		def self.to_x(type,phrase)
 
 			match = self.const_get("GRAMMAR").select(){|elem| elem[:phrases].include?(phrase.downcase)}
@@ -50,6 +33,12 @@ module Granma
 
 		end
 
+		def self.to_l(phrase)
+
+			to_x(:lambda,phrase)
+
+		end
+		
 		def self.call(phrase,*args)
 			to_l(phrase).call(*args)
 		end
