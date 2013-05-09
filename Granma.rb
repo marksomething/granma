@@ -68,4 +68,17 @@ module Granma
 		]
 	end
 
+	class Frequency < Granma::Base
+		GRAMMAR = [
+			{
+				:phrases => ["every","all"],
+				:lambda => lambda {|true_count,total_count| true_count == total_count }
+			},
+			{
+				:phrases => ["some"],
+				:lambda => lambda {|true_count,total_count| true_count > 0 }	
+			}
+		]
+	end
+
 end
