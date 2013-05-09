@@ -34,9 +34,11 @@ module Granma
 		end
 
 		def self.to_lambda(phrase)
-
 			to_x(:lambda,phrase)
+		end
 
+		def self.to_sql(phrase)
+			to_x(:sql,phrase)
 		end
 
 		def self.call(phrase,*args)
