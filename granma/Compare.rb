@@ -1,3 +1,4 @@
+require "Base"
 # Granma, a Grammar module for composing BDD tests in Ruby
 module Granma
 
